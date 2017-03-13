@@ -1,0 +1,30 @@
+<simple-notifications [options]="notifOptions"></simple-notifications>
+<h1>
+  Carreras
+</h1>
+<div class="panel panel-primary">
+	<div class="panel-heading">Carrera</div>
+	<div class="panel-body">
+		<app-carrera-create [accionForm]='accionForm'
+		[carreraSelected]='carreraSelected'
+		(emitirAccion)='recibirAccion($event)'></app-carrera-create>
+	</div>
+</div>
+
+<table class="table table-striped table-hover">
+	<tr>
+		<th>Abr.</th>
+		<th>Nombre</th>
+	</tr>
+	<tr *ngFor='let carrera of carreras'>
+		<td>{{carrera.nombre}}</td>
+		<td>{{carrera.abreviacion}}</td>
+		<td>
+			<i class="glyphicon glyphicon-remove"
+			(click)='confirmBorrarCarrera(carrera._id)'></i> | 
+			<i class="glyphicon glyphicon-edit"
+			(click)='confirmEditarCarrera(carrera)'></i> | 
+			<a href="{{'carreraDetails/'+carrera._id}}"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>Grupos</a> |
+		</td>
+	</tr>
+</table>

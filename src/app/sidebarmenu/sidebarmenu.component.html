@@ -1,0 +1,52 @@
+<div class="nav-side-menu" *ngIf="showNavBar">
+    <div class="brand"><img src="assets\img\logo1.png" id='logo' style="height:3.5em">  ScholarNode</div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+    <div class="menu-list">
+        <ul id="menu-content" class="menu-content collapse out">
+        	<!-- CARRERAS SUB-MENU -->
+            <li *ngIf='usuario.rol=="admin"' routerLinkActive="active">
+                <i class="glyphicon glyphicon-education"></i> <a routerLink='carrera'>Carreras</a>
+            </li>
+            <!-- -->
+
+            <!-- ALUMNOS SUB-MENU -->
+            <li *ngIf='usuario.rol=="admin"' data-toggle="collapse" data-target="#alumnosMenu"
+            	[class.active]='(alumnosMenu2.isActive || alumnosMenu1.isActive)'>
+                <i class="fa fa-users fa-lg"></i> Alumnos <span class="arrow"></span>
+            </li>
+            <ul class="sub-menu collapse" id="alumnosMenu" >
+                <li routerLinkActive="active" #alumnosMenu1='routerLinkActive'>
+                	<a routerLink='buscadorAlumno'>Buscador General</a>
+            	</li>
+                <li routerLinkActive="active" #alumnosMenu2='routerLinkActive'>
+                	<a routerLink='alumno'>Monitor de Preinscripciones</a>
+            	</li>
+            </ul>
+            <!-- -->
+
+        	<!-- CARRERAS SUB-MENU -->
+            <li  *ngIf='usuario.rol=="admin"||usuario.rol=="finanzas"' data-toggle="collapse" data-target="#finanzas" class="collapsed"
+            	[class.active]='(finanzasMenu1.isActive)'>
+                <i class="fa fa-money fa-lg"></i> Finanzas <span class="arrow"></span>
+            </li>
+            <ul class="sub-menu collapse" id="finanzas">
+                <li routerLinkActive="active" #finanzasMenu1='routerLinkActive'>
+                	<a routerLink='pagosList'>Buscador de pagos</a>
+                </li>
+            </ul>
+            <!-- -->
+
+        	<!-- PROFILE SUB-MENU -->
+            <li *ngIf='usuario.rol=="admin"||usuario.rol=="alumno"' routerLinkActive="active">
+                <i class="fa fa-user fa-lg"></i> Profile
+            </li>
+            <li routerLinkActive="active"> 
+                <i class="fa fa-key" aria-hidden="true"></i> <a  routerLink='login'>Login</a>
+            </li>
+
+            
+            <!-- -->
+
+        </ul>
+    </div>
+</div>

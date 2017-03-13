@@ -1,0 +1,73 @@
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h3 class="panel-title">Formato de Preinscripción</h3>
+	</div>
+	<div class="panel-body">
+		<form #nuevoAlumnoForm='ngForm' (submit)='guardarAlumno()'>
+			<div>
+				<legend>Datos de usuario</legend>
+				<div class="form-group col-md-6">
+					<label for="email">Email</label>
+					<input type="text" class="form-control" id="email" name="email" placeholder="Email"
+						[(ngModel)]='userLogin.email' #email='ngModel'>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="password">Password</label>
+					<input type="text" class="form-control" type="password" id="password"
+						name="password" placeholder="Password"
+						[(ngModel)]='userLogin.password' #password='ngModel'>
+				</div>
+			</div>
+			<div>
+				<legend>Datos Personales</legend>
+				<div *ngIf='estaInscrito()' class="form-group col-md-6">
+					<label for="">No. Matricula</label>
+					<input type="text" class="form-control" id="noMatricula" name="noMatricula" placeholder="No. Matricula"
+					[(ngModel)]='nuevoAlumno.noMatricula' #noMatricula='ngModel'>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="">Nombre</label>
+					<input type="text" class="form-control" id="Nombre" name="Nombre" placeholder="Nombre"
+					[(ngModel)]='nuevoAlumno.Nombre' #Nombre='ngModel'
+					[value]='dateObj | date'>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="">Apellido Paterno</label>
+					<input type="text" class="form-control" id="ApellidoP" name="ApellidoP" placeholder="Apellido Paterno"
+					[(ngModel)]='nuevoAlumno.ApellidoP' #ApellidoP='ngModel' >
+				</div>
+				<div class="form-group col-md-6">
+					<label for="">Apellido Materno</label>
+					<input type="text" class="form-control" id="ApellidoM" name="ApellidoM" placeholder="Apellido Materno"
+					[(ngModel)]='nuevoAlumno.ApellidoM' #ApellidoM='ngModel' >
+				</div>
+				<div class="form-group col-md-6">
+					<label for="">FechaNac</label>
+					<input type="date" class="form-control" id="FechaNac" name="FechaNac" placeholder="Fecha de Nacimiento"
+					[(ngModel)]='nuevoAlumno.FechaNac'
+					[value]="nuevoAlumno.FechaNac" >
+				</div>
+				<div class="form-group col-md-6">
+					<label for="carrera">Carrera</label>
+					<select class="form-control" id="carrera" name="carrera"
+					[(ngModel)]='nuevoAlumno._carrera' required>
+					    <option *ngFor="let carrera of Carreras"
+					    [value]="carrera._id">
+					    	{{carrera.nombre}}
+					    </option>
+					  </select>
+				</div>
+				<div class="col-md-12">
+					<button type="submit" class="btn btn-primary">
+						Guardar
+					</button>
+					<span class="btn btn-success"
+					(click)='confirmarInscripcion()'
+					*ngIf='showInscribirButton()'>
+						Inscribir
+					</span>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

@@ -1,0 +1,48 @@
+<simple-notifications [options]="notifOptions"></simple-notifications>
+
+<h2>
+	<strong>Carrera: </strong>{{carrera.nombre}}
+</h2>
+
+<div class="row">
+	<button type="button" class="btn btn-primary" (click)='crearNuevoGrupo()'>Nuevo Grupo</button>
+</div>
+
+<div class="row" id="pnlGrupos">
+	<grupo-simple-list *ngIf='grupoID1'
+		[grupoID]='grupoID1'
+		(onRowSelected)='rowSelectedGrupo1($event)'
+		(onBindingAlumnos)='tomarAlumnosGrupo1($event)'
+		(onGroupModifiedBySocket)='emitirNotificacion($event)'
+		(onGroupChanged)='cambiaGrupo1($event)'
+		[vmAlumnosIn] = 'alumnosAIzquierda'
+		[alumnosRemove] = 'alumnosADerecha'
+		[grupoIDIgnorar] = 'grupoID2'
+		[class.col-md-12]='!grupoID2'
+		[class.col-md-5]='grupoID2'
+		#listaGrupo1>
+	</grupo-simple-list>
+
+	<div class="col-md-1" id="pnlBotonesPasarAlumnos" *ngIf='grupoID2'>
+		<button class="btn btn-primary" (click)='pasarDerecha()'><span class="glyphicon glyphicon-arrow-right"></span></button><br>
+		<button class="btn btn-primary" (click)='pasarIzquierda()'><span class="glyphicon glyphicon-arrow-left"></span></button><br>
+		<button class="btn btn-success" (click)='guardarEdicionGrupos()'><i class="fa fa-floppy-o" aria-hidden="true"></i></button><br>
+	</div>
+
+	<grupo-simple-list class='col-md-5'
+		*ngIf='grupoID2'
+		[grupoID]='grupoID2'
+		(onRowSelected)='rowSelectedGrupo2($event)'
+		(onBindingAlumnos)='tomarAlumnosGrupo2($event)'
+		(onGroupModifiedBySocket)='emitirNotificacion($event)'
+		(onGroupChanged)='cambiaGrupo2($event)'
+		[vmAlumnosIn] = 'alumnosADerecha'
+		[alumnosRemove] = 'alumnosAIzquierda'
+		[grupoIDIgnorar] = 'grupoID1'
+		#listaGrupo2>
+	</grupo-simple-list>
+
+	<div *ngIf='!grupoID1 && !grupoID2' class="alert alert-warning">
+		Aún no hay alumnos inscritos a esta carrera.
+	</div>
+</div>

@@ -1,0 +1,29 @@
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h3 class="panel-title">Resultado</h3>
+	</div>
+	<div class="panel-body">
+		<table *ngIf='Alumnos.length>0' class="table table-hover table-stripped">
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Apellido</th>
+					<th>Grupo</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody >
+				<tr *ngFor='let alumno of Alumnos'>
+					<td>{{alumno.Nombre}}</td>
+					<td>{{alumno.ApellidoP+' '+alumno.ApellidoM}}</td>
+					<td>{{alumno._grupo.nombre}}</td>
+					<td>
+						<a href="{{'createAlumno/'+alumno._id}}">
+							<i class="fa fa-address-card-o" aria-hidden="true"></i>
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

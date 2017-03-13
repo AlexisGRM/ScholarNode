@@ -1,0 +1,23 @@
+grupo-simple-list{
+	-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.5);
+	-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.5);
+	box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.5);
+	border: 1px solid #B3B3B3;
+	margin: .5em;
+	border-radius: 1em;
+	display: block;
+	padding-top: 1em;
+}
+
+#pnlGrupos{
+	padding-top: 1em;
+}
+
+#pnlBotonesPasarAlumnos{
+	text-align: center;
+}
+
+#pnlBotonesPasarAlumnos button{
+	margin: 1em 0;
+	font-size: 1.5em;
+}

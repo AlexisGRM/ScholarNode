@@ -1,0 +1,33 @@
+<simple-notifications [options]="notifOptions"></simple-notifications>
+<a href="createAlumno">Nuevo Estudiante</a>
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h3 class="panel-title">Monitor de Preinscripciones</h3>
+	</div>
+	<div class="panel-body">
+		<table class="table table-hover table-stripped">
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Apellido</th>
+					<th>Carrera</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor='let alumno of Alumnos'>
+					<td>{{alumno.Nombre}}</td>
+					<td>{{alumno.ApellidoP+' '+alumno.ApellidoM}}</td>
+					<td>{{alumno._carrera?alumno._carrera.abreviacion:'--'}}</td>
+					<td>
+						<a href="{{'createAlumno/'+alumno._id}}">
+							<i class="glyphicon glyphicon-ok"></i>
+						</a> | 
+						<i class="glyphicon glyphicon-remove"
+						(click)='confirmBorrarPreinscrito(alumno._id)'></i>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
